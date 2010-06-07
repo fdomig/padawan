@@ -1,5 +1,5 @@
 <?php
-if ($test === false) {
+if (false === $test) {
 
 } else {
 	$abc = 1;

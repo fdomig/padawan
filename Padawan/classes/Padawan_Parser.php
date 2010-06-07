@@ -43,20 +43,20 @@ class Padawan_Parser
         array_shift($args);
         
         foreach ($args as $k => $v) {
-            if ($v == '-v') {
+            if ('-v' == $v) {
                 $settings['verbose'] = true;
             }
-            if ($v == '-o') {
+            if ('-o' == $v) {
                 if (isset($args[$k+1])) {
                     $dumpfile['xml'] = $args[$k+1];
                 }
             }
-            if ($v == '--single') {
+            if ('--single' == $v) {
                 if (isset($args[$k+1])) {
                     $settings['single'] = $args[$k+1];
                 }
             }
-            if ($v == '--tagged') {
+            if ('--tagged' == $v) {
                 if (isset($args[$k+1])) {
                     $settings['tagged'] = $args[$k+1];
                 }
@@ -177,7 +177,7 @@ class Padawan_Parser
         echo $color['cyan']."F> ".$filename.$color['none']."\n";
         $status = $pad->loadFile($filename);
     
-        if ($status === false) {
+        if (false === $status) {
             echo sprintf("ERR> %s empty\n", realpath($filename));
         }
         
@@ -218,7 +218,7 @@ class Padawan_Parser
         foreach ($myTests as $testName) {
             $test = $pad->test($testName, true);
             // passed
-            if ($test === false) {
+            if (false === $test) {
                 if ($settings['verbose']) {
                     $te = $color['green'].'OK'.$color['none'];
                     echo "  T1>".str_pad($testName, 30, " ").'- '.$te."\n";
@@ -232,7 +232,7 @@ class Padawan_Parser
                         $out_body['xml'] .= sprintf('  <error line="%s" column="0" severity="%s" message="%s" pattern="%s" />%s', $tv[1], 'warning', htmlentities($pad->getHint($testName)), $testName, "\n");
                         $out_body['csv'] .= sprintf('"%s";"%s";"%s";"%s";"%s"%s', '{FILE}', $tv[1], 'warning', $pad->getHint($testName), $testName,"\n");
                         $out_body['txt'] .= sprintf("  %s\t%s\t%s (%s)\n", $tv[1], 'warning', $pad->getHint($testName), $testName);
-                        if ($i == 0) {
+                        if (0 == $i) {
                             $src_filename = $tv[0];
                             $i++;
                         }
@@ -244,7 +244,7 @@ class Padawan_Parser
                     $out_body['xml'] .= sprintf('  <error line="%s" column="0" severity="%s" message="%s" pattern="%s" />%s', $test[1], 'warning', htmlentities($pad->getHint($testName)), $testName, "\n");
                     $out_body['csv'] .= sprintf('"%s";"%s";"%s";"%s";"%s"%s', '{FILE}', $test[1], 'warning', $pad->getHint($testName), $testName, "\n");
                     $out_body['txt'] .= sprintf("  %s\t%s\t%s (%s)\n", $test[1], 'warning', $pad->getHint($testName), $testName);
-                    if ($i == 0) {
+                    if (0 == $i) {
                         $src_filename = $test[0];
                         $i++;
                     }

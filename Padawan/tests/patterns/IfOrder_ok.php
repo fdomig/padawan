@@ -1,6 +1,6 @@
 <?php
 $a = 1;
-if ($a === true) {
+if (true === $a) {
  $b = 1;
 }
 ?>

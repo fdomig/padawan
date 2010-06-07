@@ -47,7 +47,7 @@ class Padawan {
     public function loadFile($filename) {
         if (is_file($filename) && is_readable($filename)) {
             $xml = file_get_contents($filename);
-            if ($xml === false) {
+            if (false === $xml) {
                 return false;
             }
             
@@ -100,7 +100,7 @@ class Padawan {
         $q_file = '/attrs/attr[@key="phc.filename"]/string';
         $q_line = '/attrs/attr[@key="phc.line_number"]/integer';
         
-        if ($query['test'] == self::TEST_COUNT) {
+        if (self::TEST_COUNT == $query['test']) {
             $result = $this->element->xpath($query['query']);
             if ($result !== false && count($result) == $query['expected']) {
                 if ($details) {
@@ -130,11 +130,11 @@ class Padawan {
                 return true;
             }
             return false;
-        } elseif ($query['test'] == self::TEST_STEP ) {
+        } elseif (self::TEST_STEP == $query['test'] ) {
             $base = array_shift($query['query']);
             $tmp = $this->element->xpath($base['query']);
             // if the first step fails, we can't match
-            if ($tmp === false) {
+            if (false === $tmp) {
                 return false;
             }
             $return = true;
@@ -147,14 +147,14 @@ class Padawan {
                 
                 $ql = $q.$q_line;
                 $line = $this->element->xpath($ql);
-                if ($line === false) {
+                if (false === $line) {
                     $ql = $base['query'].'/../..'.$q_line;
                     $line = $this->element->xpath($ql);
                 }
                 
                 $qf = $q.$q_file;
                 $file = $this->element->xpath($qf);
-                if ($file === false) {
+                if (false === $file) {
                     $qf = $base['query'].'/../..'.$q_file;
                     $file = $this->element->xpath($qf);
                 }

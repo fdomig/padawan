@@ -31,7 +31,7 @@ class Padawan_Creation {
         exec($cmd, $_txt);
         $_txt = join("\n", $_txt);
         
-        if ($mode == 'xml'){
+        if ('xml' == $mode){
             // replace unneeded xmlns-definition
             $pat = ' xmlns="http://www.phpcompiler.org/phc-1.0"';
             $_txt = str_replace($pat, '', $_txt);
