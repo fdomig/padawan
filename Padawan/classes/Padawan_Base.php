@@ -67,7 +67,7 @@ class Padawan {
      * @return bool
      */
     public function xpath($query, $test = null, $expected = null) {
-        if (strlen($query) < 1) {
+        if (1 > strlen($query)) {
             return false;
         } else {
             return $this->query(array('query' => $query, 'test' => $test, 'expected' => $expected));
@@ -160,10 +160,10 @@ class Padawan {
                 }
                 $retFile = (string)$file[0];
                 $retLine = (string)$line[0];
-                if (strlen($retFile) < 1){
+                if (1 > strlen($retFile)){
                     $retFile = $file[0][0];
                 }
-                if (strlen($retLine) < 1){
+                if (1 > strlen($retLine)){
                     $retLine = $line[0][0];
                 }
                 $result[$key] = array($retFile, $retLine);
@@ -202,7 +202,7 @@ class Padawan {
     
     public function setXml($data = "") {
         $data = str_replace(self::STRIP_XMLNS, '', $data);
-        if (strlen($data) < 1) {
+        if (1 > strlen($data)) {
             return false;
         }
         $this->xml = $data;
